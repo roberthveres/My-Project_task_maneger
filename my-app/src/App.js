@@ -1,12 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import TaskCard from './components/task-card/TaskCard';
 function App() {
-  return (
-    <div>
-        
-    </div>
-  );
+  return <div className="app-container">
+    <TaskCard/>
+  </div>;
 }
 
 export default App;
