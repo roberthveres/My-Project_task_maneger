@@ -1,11 +1,11 @@
 import "../date-container/DateContainer.css"
 
-function DateContainer(denes) {
+function DateContainer(props) {
     return (
       <div className="card-footer">
         <div>
           <p>Due Date</p>
-          <p>{denes.date.toLocaleDateString()}</p>
+          <p>{props.date.toLocaleDateString()}</p>
         </div>
       </div>
     );

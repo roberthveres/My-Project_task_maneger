@@ -1,18 +1,18 @@
 import "./TaskCard.css";
 import Badge from "../badge/Badge";
 import DateContainer from "../date-container/DateContainer";
-function TaskCard(izmos) {
+function TaskCard(props) {
   return (
     <div className="card-wrepper">
       <div className="card-header">
-        <p className="task-id">{izmos.marika}</p>
-        <Badge albisne={izmos.linci} />
+        <p className="task-id">{props.id}</p>
+        <Badge status={props.status} />
       </div>
       <div className="card-content">
-        <p>{izmos.name}</p>
+        <p>{props.name}</p>
       </div>
       <div className="card-footer">
-        <DateContainer date={izmos.dueDate} />
+        <DateContainer date={props.dueDate} />
       </div>
     </div>
   );
