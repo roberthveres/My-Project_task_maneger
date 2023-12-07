@@ -1,4 +1,4 @@
-
+import React from 'react';
 import './App.css';
 import TaskViewer from './components/task-viewer/TaskViewer';
 function App() {
@@ -22,7 +22,7 @@ function App() {
       dueDate: new Date(2022, 5, 23),
     },
   ];
-  
+
   return (
     <div className="app-container">
       <div className="app-content">
