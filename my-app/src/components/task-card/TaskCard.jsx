@@ -4,8 +4,10 @@ import Badge from "../badge/Badge";
 import DateContainer from "../date-container/DateContainer";
 
 function TaskCard(props) {
+  const [taskd, setTaskId] = useState(props.id)
+
   return (
-    <div className="card-wrepper">
+    <div className="card-wrapper">
       <div className="card-header">
         <p className="task-id">{props.id}</p>
         <Badge status={props.status} />
