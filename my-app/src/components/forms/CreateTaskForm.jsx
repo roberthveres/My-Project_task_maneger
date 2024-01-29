@@ -1,23 +1,71 @@
-import React from "react";
+import React, {useState} from "react";
 import "./CreateTaskForm.css";
 
 const CreateTaskForm = () => {
+    const [taskName, setTaskName] = useState("");
+    const [dueDate, setDueDate] = useState("");
+    const [taskDetails, setTaskDetails] = useState("");
+
+    const handleNameChange = (event) => {
+        setTaskName(event.target.value)
+    }
+
+    const handleDateChange = (event) => {
+        setDueDate(event.target.value);
+    };
+
+    const handleDetailsChange = (event) => {
+        setTaskDetails(event.target.value)
+    };
+
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+
+        console.log("taskName=", taskName);
+        console.log("dueDate=", dueDate);
+        console.log("taskDetails=", taskDetails);
+
+        const newTask = {
+            name: taskName,
+            dueDate: dueDate,
+            taskDetails: taskDetails,
+            status: "To do",
+        };
+
+        console.log(newTask);
+    }
+
+ 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-row">
           <label className="label-md">Task Name</label>
-          <input className="input-primary" type="text" />
+          <input
+            onChange={handleNameChange}
+            className="input-primary"
+            type="text"
+          />
         </div>
 
         <div className="form-row">
           <label className="label-md">Due Date</label>
-          <input className="input-primary" type="date" />
+          <input
+            onChange={handleDateChange}
+            className="input-primary"
+            type="date"
+          />
         </div>
 
         <div className="form-row">
           <label className="label-md">Task Details</label>
-          <textarea className="input-primary" cols="30" rows="10"></textarea>
+          <textarea
+            onChange={handleDetailsChange}
+            className="input-primary"
+            cols="30"
+            rows="10"
+          ></textarea>
         </div>
 
         <button className="button-primary" type="submit">
