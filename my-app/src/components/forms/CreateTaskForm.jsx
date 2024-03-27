@@ -1,48 +1,52 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./CreateTaskForm.css";
 
-const CreateTaskForm = () => {
-    const [taskName, setTaskName] = useState("");
-    const [dueDate, setDueDate] = useState("");
-    const [taskDetails, setTaskDetails] = useState("");
+const CreateTaskForm = (props) => {
+  const [taskName, setTaskName] = useState("");
+  const [dueDate, setDueDate] = useState("");
+  const [taskDetails, setTaskDetails] = useState("");
 
-    const handleNameChange = (event) => {
-        setTaskName(event.target.value)
-    }
+  const handleNameChange = (event) => {
+    setTaskName(event.target.value);
+  };
 
-    const handleDateChange = (event) => {
-        setDueDate(event.target.value);
+  const handleDateChange = (event) => {
+    setDueDate(event.target.value);
+  };
+
+  const handleDetailsChange = (event) => {
+    setTaskDetails(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const resetForm = () => {
+      setTaskName("");
+      setDueDate("");
+      setTaskDetails("");
     };
 
-    const handleDetailsChange = (event) => {
-        setTaskDetails(event.target.value)
+    const newTask = {
+      name: taskName,
+      dueDate: dueDate,
+      taskDetails: taskDetails,
+      status: "To do",
     };
 
+    props.addNewTask(newTask);
+    console.log(newTask);
+    resetForm("")
+  };
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-
-        console.log("taskName=", taskName);
-        console.log("dueDate=", dueDate);
-        console.log("taskDetails=", taskDetails);
-
-        const newTask = {
-            name: taskName,
-            dueDate: dueDate,
-            taskDetails: taskDetails,
-            status: "To do",
-        };
-
-        console.log(newTask);
-    }
-
- 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <div className="form-row">
           <label className="label-md">Task Name</label>
           <input
+            value={taskName}
+            name="taskName"
             onChange={handleNameChange}
             className="input-primary"
             type="text"
@@ -52,6 +56,8 @@ const CreateTaskForm = () => {
         <div className="form-row">
           <label className="label-md">Due Date</label>
           <input
+            value={dueDate}
+            name="dueDate"
             onChange={handleDateChange}
             className="input-primary"
             type="date"
@@ -61,6 +67,8 @@ const CreateTaskForm = () => {
         <div className="form-row">
           <label className="label-md">Task Details</label>
           <textarea
+            value={taskDetails}
+            name="taskDetails"
             onChange={handleDetailsChange}
             className="input-primary"
             cols="30"

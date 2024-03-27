@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import TaskViewer from "./components/task-viewer/TaskViewer";
 import CreateTaskForm from "./components/forms/CreateTaskForm";
@@ -48,19 +48,31 @@ const data = [
 ];
 
 function App() {
+  const [taskLists, setTaskLists] = useState(data);
+
+  const onNewTaskAdd = (newTask) => {
+    console.log("task from APP.js", newTask);
+    setTaskLists((prevState) =>[
+      ...prevState,{
+        ...newTask,
+        dueDate:new Date(newTask.dueDate),
+        id: "T-" + prevState.length
+      }
+    ])
+
+  };
+
   return (
     <div className="app-container">
       <div className="app-content">
-        <TaskViewer taskList={data} />
+        <TaskViewer taskList={taskLists} />
 
         <div className="side-bar-right">
           <div className="card-xl">
-              <h3>Create Task</h3>
-              <CreateTaskForm/>
-              
+            <h3>Create Task</h3>
+            <CreateTaskForm addNewTask={onNewTaskAdd}/>
           </div>
         </div>
-
       </div>
     </div>
   );
